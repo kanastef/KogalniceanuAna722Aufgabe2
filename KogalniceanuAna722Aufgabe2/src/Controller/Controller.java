@@ -4,8 +4,11 @@ import Model.Medicine;
 import Repository.Repository;
 import Model.Patient;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Controller {
     Repository<Medicine> medicineRepository;
@@ -68,5 +71,22 @@ public class Controller {
     public List<Patient> filterBySickness(String sickness) {
         return patientsRepository.readAll().stream().filter(c -> c.getMeds().stream().anyMatch(p -> p.getSickness().equalsIgnoreCase(sickness))).toList();
 
+    }
+
+    public List<Medicine> sortPatientMedicine(int order, int id) {
+        Optional<Patient> patientOptional = patientsRepository.read(id);
+        if (patientOptional.isPresent()) {
+            List<Medicine> medicine = patientOptional.get().getMeds();
+            if (order == 0) {
+                return medicine.stream()
+                        .sorted(Comparator.comparing(Medicine::getPrice))
+                        .collect(Collectors.toList());
+            } else if (order == 1) {
+                return medicine.stream()
+                        .sorted(Comparator.comparing(Medicine::getPrice).reversed())
+                        .collect(Collectors.toList());
+            }
+        }
+        return new ArrayList<>();
     }
 }
