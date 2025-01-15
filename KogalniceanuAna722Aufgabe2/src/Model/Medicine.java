@@ -35,4 +35,12 @@ public class Medicine {
         this.sickness = sickness;
     }
 
+    @Override
+    public String toString() {
+        return "Medicine{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", sickness='" + sickness + '\'' +
+                '}';
+    }
 }

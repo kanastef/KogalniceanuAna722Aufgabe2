@@ -65,4 +65,15 @@ public class Patient {
     public void removeMeds(Medicine med) {
         this.meds.remove(med);
     }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", diagnosis='" + diagnosis + '\'' +
+                ", meds=" + meds +
+                '}';
+    }
 }
