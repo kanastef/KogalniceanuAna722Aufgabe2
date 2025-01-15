@@ -65,6 +65,8 @@ public class Controller {
     public List<Patient> filterByDiagnosis(String diagnosis) {
         return patientsRepository.readAll().stream().filter(c -> c.getDiagnosis().equalsIgnoreCase(diagnosis)).toList();
     }
+    public List<Patient> filterBySickness(String sickness) {
+        return patientsRepository.readAll().stream().filter(c -> c.getMeds().stream().anyMatch(p -> p.getSickness().equalsIgnoreCase(sickness))).toList();
 
-
+    }
 }
