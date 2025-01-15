@@ -24,11 +24,11 @@ public class Controller {
         return medicineRepository.create(new Medicine(name, price, sickness));
     }
 
-    public Optional<Patient> readClient(int id) {
+    public Optional<Patient> readPatient(int id) {
         return patientsRepository.read(id);
     }
 
-    public Optional<Medicine> readProduct(int id) {
+    public Optional<Medicine> readMedicine(int id) {
         return medicineRepository.read(id);
     }
 
@@ -42,23 +42,29 @@ public class Controller {
         return false;
     }
 
-    public boolean updateProduct(int id, String name, double price, String sickness) {
+    public boolean updateMedicine(int id, String name, double price, String sickness) {
         return medicineRepository.update(id, new Medicine(name, price, sickness));
     }
 
-    public boolean deleteClient(int id) {
+    public boolean deletePatient(int id) {
         return patientsRepository.delete(id);
     }
 
-    public boolean deleteProduct(int id) {
+    public boolean deleteMedicine(int id) {
         return medicineRepository.delete(id);
     }
 
-    public List<Patient> readAllClients() {
+    public List<Patient> readAllPatients() {
         return patientsRepository.readAll();
     }
 
-    public List<Medicine> readAllProducts() {
+    public List<Medicine> readAllMedicines() {
         return medicineRepository.readAll();
     }
+
+    public List<Patient> filterByDiagnosis(String diagnosis) {
+        return patientsRepository.readAll().stream().filter(c -> c.getDiagnosis().equalsIgnoreCase(diagnosis)).toList();
+    }
+
+
 }

@@ -57,4 +57,12 @@ public class Patient {
     public void setMeds(List<Medicine> meds) {
         this.meds = meds;
     }
+
+    public void addMeds(Medicine med) {
+        this.meds.add(med);
+    }
+
+    public void removeMeds(Medicine med) {
+        this.meds.remove(med);
+    }
 }
